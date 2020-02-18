@@ -7,9 +7,9 @@ import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 
 scope = ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/auth/drive']
-creds = ServiceAccountCredentials.from_json_keyfile_name('jego-972d19158581.json', scope)
+creds = ServiceAccountCredentials.from_json_keyfile_name('gjhelper-cc7069273059.json', scope)
 client = gspread.authorize(creds)
-doc = client.open_by_url('https://docs.google.com/spreadsheets/d/15p6G4jXmHw7Z_iRCYeFwRzkzLxqf-3Pj0c6FeVuFYBM')
+doc = client.open_by_url('https://docs.google.com/spreadsheets/d/1PA2WP-aQ-d8TlGubOSpUJwHoH8VZfiTwIFPO3eYGnIs')
 
 
 
@@ -37,8 +37,8 @@ async def on_message(message):
 	if message.content.startswith('!재고'):
 		SearchID = message.content[len('!재고')+1:]
 		gc = gspread.authorize(creds)
-		wks = gc.open('오전재고').worksheet('시트1')
-		wkstime = gc.open('오전재고').worksheet('데이터')
+		wks = gc.open('GJ재고관리').worksheet('구단위코드/재고출력')
+		wkstime = gc.open('GJ재고관리').worksheet('재고데이터')
 		
 		wks.update_acell('A1', SearchID)
 		result = wks.acell('B1').value
@@ -60,7 +60,7 @@ async def on_message(message):
 	if message.content.startswith('!모델명'):
 		SearchID = message.content[len('!모델명')+1:]
 		gc = gspread.authorize(creds)
-		wks = gc.open('오전재고').worksheet('시트2')
+		wks = gc.open('GJ재고관리').worksheet('모델명출력')
 		wks.update_acell('A1', SearchID)
 		result = wks.acell('B1').value
 		
