@@ -72,5 +72,4 @@ async def on_message(message):
 		await client.send_message(message.channel, embed=embed)
                         
 access_token = os.environ["BOT_TOKEN"]
-git_access_token = os.environ["GIT_TOKEN"]
 client.run(access_token)
