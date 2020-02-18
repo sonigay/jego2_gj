@@ -55,7 +55,7 @@ async def on_message(message):
 			color=0xff00ff
 			)
 		await client.send_message(message.channel, embed=embed1)
-		await client.send_message(client.get_channel("674838122332291082"), embed=embed2)
+		await client.send_message(client.get_channel("679371153164468234"), embed=embed2)
             
 	if message.content.startswith('!모델명'):
 		SearchID = message.content[len('!모델명')+1:]
