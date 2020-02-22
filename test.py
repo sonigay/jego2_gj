@@ -42,20 +42,27 @@ async def on_message(message):
 		
 		wks.update_acell('A1', SearchID)
 		result = wks.acell('B1').value
+		result1 = wks.acell('C1').value
 		result2 = wkstime.acell('A1').value
             
 		embed1 = discord.Embed(
 			title = ' :calling:  ' + SearchID + ' 재고현황! ',
-			description= '**```css\n' + SearchID + ' 재고현황 입니다.\n마지막 데이터 업로드시간은\n'+ result2 + ' 입니다.' + result + '실시간조회가 아니라서 다소 차이가 있을수 있습니다. ```**',
+			description= '**```css\n' + SearchID + ' 재고현황 입니다.\n마지막 데이터 업로드시간은\n'+ result2 + ' 입니다.' + result + '```**',
 			color=0xff00ff
 			)
 		embed2 = discord.Embed(
+			title = '',
+			description= '**```css\n' + result1 + '실시간조회가 아니라서 다소 차이가 있을수 있습니다. ```**',
+			color=0xff00ff
+			)		
+		embed3 = discord.Embed(
 			title = ' :calling: ' + SearchID + ' 재고조회!! ',
 			description= '```' "조회자:" + message.author.display_name +"\n거래처:" + message.channel.name + ' ```',
 			color=0xff00ff
 			)
 		await client.send_message(message.channel, embed=embed1)
-		await client.send_message(client.get_channel("679371153164468234"), embed=embed2)
+		await client.send_message(message.channel, embed=embed2)		
+		await client.send_message(client.get_channel("679371153164468234"), embed=embed3)
             
 	if message.content.startswith('!모델명'):
 		SearchID = message.content[len('!모델명')+1:]
